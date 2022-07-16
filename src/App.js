@@ -1,19 +1,36 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 const App = (props) => {
   const [state, setState] = useState(props);
+  const { name, price } = state;
+
+  // renderごとに実行
+  useEffect(() => {
+    console.log('This is like componentDidMount or componentDidUpdate');
+  });
+
+  // マウント・アンマウント時に実行
+  useEffect(() => {
+    console.log('This is like componentDidMount');
+  }, []);
+
+  // 第2引数が更新されたら実行
+  useEffect(() => {
+    console.log('This callback is for name only.');
+  }, [name]);
+
   const reset = () => setState(props);
 
   return (
     <>
       <p>
-        現在の{state.name}は{state.price}円です
+        現在の{name}は{price}円です
       </p>
-      <button onClick={() => setState({ ...state, price: state.price + 1 })}>
+      <button onClick={() => setState({ ...state, price: price + 1 })}>
         +1
       </button>
-      <button onClick={() => setState({ ...state, price: state.price - 1 })}>
+      <button onClick={() => setState({ ...state, price: price - 1 })}>
         -1
       </button>
       <button onClick={reset}>Reset</button>
