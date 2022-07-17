@@ -1,6 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { CREATE_EVENT, DELETE_ALL_EVENT } from '../actions';
+import {
+  CREATE_EVENT,
+  DELETE_ALL_EVENTS,
+  ADD_OPERATION_LOG,
+  // DELETE_ALL_OPERATION_LOGS,
+} from '../actions';
 import AppContext from '../contexts/AppContext.js';
+import { timeCurrentIso8601 } from '../utils';
 
 const EventFrom = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -16,6 +22,12 @@ const EventFrom = () => {
       body: body,
     });
 
+    dispatch({
+      type: ADD_OPERATION_LOG,
+      description: 'イベントを作成しました',
+      operatedAt: timeCurrentIso8601(),
+    });
+
     // 入力したものをinputやtextareaから削除しておく
     setTitle('');
     setBody('');
@@ -26,7 +38,12 @@ const EventFrom = () => {
     const result = window.confirm('Are you sure you want to delete?');
     if (result) {
       dispatch({
-        type: DELETE_ALL_EVENT,
+        type: DELETE_ALL_EVENTS,
+      });
+      dispatch({
+        type: ADD_OPERATION_LOG,
+        description: '全てのイベントを削除しました',
+        operatedAt: timeCurrentIso8601(),
       });
     }
   };
