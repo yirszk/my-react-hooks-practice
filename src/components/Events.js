@@ -1,13 +1,11 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import Event from './Event';
 import AppContext from '../contexts/AppContext.js';
 
-const Events = ({ state, dispatch }) => {
-  const value = useContext(AppContext)
+const Events = () => {
+  const {state} = useContext(AppContext);
   return (
     <>
-      <p>{value}</p>;
-      {/* 省略 */}
       <div className='container mx-2'>
         <h4 className='text-xl font-bold mt-6 mb-2'>イベント一覧</h4>
         <div className='overflow-x-auto relative shadow-md sm:rounded-lg'>
@@ -27,7 +25,7 @@ const Events = ({ state, dispatch }) => {
             </thead>
             <tbody>
               {state.map((event, index) => (
-                <Event key={index} event={event} dispatch={dispatch} />
+                <Event key={index} event={event} />
               ))}
             </tbody>
           </table>

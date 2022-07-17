@@ -4,15 +4,13 @@ import EventForm from './EventForm.js';
 import AppContext from '../contexts/AppContext.js';
 import reducer from '../reducers';
 
-console.log({ AppContext });
-
 const App = () => {
   const [state, dispatch] = useReducer(reducer, []);
 
   return (
-    <AppContext.Provider value={'test'}>
-      <EventForm state={state} dispatch={dispatch} />
-      <Events state={state} dispatch={dispatch} />
+    <AppContext.Provider value={{ state, dispatch }}>
+      <EventForm />
+      <Events />
     </AppContext.Provider>
   );
 };
