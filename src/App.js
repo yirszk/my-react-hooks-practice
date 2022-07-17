@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+import '.././App.css';
 
-function App() {
+const App = (props) => {
+  const [state, setState] = useState(props);
+  const { name, price } = state;
+
+  // renderごとに実行
+  useEffect(() => {
+    console.log('This is like componentDidMount or componentDidUpdate');
+  });
+
+  // マウント・アンマウント時に実行
+  useEffect(() => {
+    console.log('This is like componentDidMount');
+  }, []);
+
+  // 第2引数が更新されたら実行
+  useEffect(() => {
+    console.log('This callback is for name only.');
+  }, [name]);
+
+  const reset = () => setState(props);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <p>
+        現在の{name}は{price}円です
+      </p>
+      <button onClick={() => setState({ ...state, price: price + 1 })}>
+        +1
+      </button>
+      <button onClick={() => setState({ ...state, price: price - 1 })}>
+        -1
+      </button>
+      <button className="m-2" onClick={reset}>Reset</button>
+      <input
+        value={state.name}
+        onChange={(e) => setState({ ...state, name: e.target.value })}
+      />
+    </>
   );
-}
+};
+
+App.defaultProps = {
+  name: 'sample',
+  price: 1000,
+};
 
 export default App;
