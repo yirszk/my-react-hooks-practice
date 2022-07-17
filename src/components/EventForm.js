@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CREATWE_EVENT, DELETE_ALL_EVENT } from '../actions';
+import { CREATE_EVENT, DELETE_ALL_EVENT } from '../actions';
 
 const EventFrom = ({ state, dispatch }) => {
   const [title, setTitle] = useState('');
@@ -9,7 +9,7 @@ const EventFrom = ({ state, dispatch }) => {
     e.preventDefault();
 
     dispatch({
-      type: CREATWE_EVENT,
+      type: CREATE_EVENT,
       title: title,
       body: body,
     });
