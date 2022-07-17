@@ -3,7 +3,7 @@ import {
   CREATE_EVENT,
   DELETE_ALL_EVENTS,
   ADD_OPERATION_LOG,
-  // DELETE_ALL_OPERATION_LOGS,
+  DELETE_ALL_OPERATION_LOGS,
 } from '../actions';
 import AppContext from '../contexts/AppContext.js';
 import { timeCurrentIso8601 } from '../utils';
@@ -47,6 +47,16 @@ const EventFrom = () => {
       });
     }
   };
+
+  const deleteAllOperationLogs = (e) => {
+    e.preventDefault();
+    const result = window.confirm('Are you sure you want to delete?');
+    if (result) {
+      dispatch({
+        type: DELETE_ALL_OPERATION_LOGS,
+      });
+    }
+  }
 
   return (
     <>
@@ -99,6 +109,14 @@ const EventFrom = () => {
           disabled={!state.events.length}
         >
           Delete all events
+        </button>
+        <button
+          type='submit'
+          className='my-2 text-white bg-red-700 disabled:bg-slate-400 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+          onClick={deleteAllOperationLogs}
+          disabled={!state.operationLogs.length}
+        >
+          Delete all operation logs
         </button>
       </form>
     </>
