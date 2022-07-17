@@ -3,7 +3,7 @@ import Event from './Event';
 import AppContext from '../contexts/AppContext.js';
 
 const Events = () => {
-  const {state} = useContext(AppContext);
+  const { state } = useContext(AppContext);
   return (
     <>
       <div className='container mx-2'>
@@ -24,7 +24,7 @@ const Events = () => {
               </tr>
             </thead>
             <tbody>
-              {state.map((event, index) => (
+              {state.events.map((event, index) => (
                 <Event key={index} event={event} />
               ))}
             </tbody>
