@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CREATWE_EVENT, DELETE_ALL_EVENT } from '../actions';
 
 const EventFrom = ({ state, dispatch }) => {
   const [title, setTitle] = useState('');
@@ -8,7 +9,7 @@ const EventFrom = ({ state, dispatch }) => {
     e.preventDefault();
 
     dispatch({
-      type: 'CREATE_EVENT',
+      type: CREATWE_EVENT,
       title: title,
       body: body,
     });
@@ -23,7 +24,7 @@ const EventFrom = ({ state, dispatch }) => {
     const result = window.confirm('Are you sure you want to delete?');
     if (result) {
       dispatch({
-        type: 'DELETE_ALL_EVENT',
+        type: DELETE_ALL_EVENT,
       });
     }
   };
