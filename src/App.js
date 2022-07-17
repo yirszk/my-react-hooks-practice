@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './App.css';
+import '.././App.css';
 
 const App = (props) => {
   const [state, setState] = useState(props);
@@ -33,7 +33,7 @@ const App = (props) => {
       <button onClick={() => setState({ ...state, price: price - 1 })}>
         -1
       </button>
-      <button onClick={reset}>Reset</button>
+      <button className="m-2" onClick={reset}>Reset</button>
       <input
         value={state.name}
         onChange={(e) => setState({ ...state, name: e.target.value })}
