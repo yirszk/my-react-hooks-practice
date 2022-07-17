@@ -26,8 +26,8 @@ const App = () => {
 
     dispatch({
       type: 'DELETE_ALL_EVENT',
-    })
-  }
+    });
+  };
 
   return (
     <>
@@ -70,15 +70,17 @@ const App = () => {
           </div>
           <button
             type='submit'
-            className='my-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+            className='my-2 text-white bg-blue-700 disabled:bg-slate-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'
             onClick={addEvent}
+            disabled={body === '' || title === ''}
           >
             Create an event
           </button>
           <button
             type='submit'
-            className='my-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+            className='my-2 text-white bg-red-700 disabled:bg-slate-400 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'
             onClick={deleteAllEvents}
+            disabled={!state.length}
           >
             Delete all events
           </button>
