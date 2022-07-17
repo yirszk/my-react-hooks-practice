@@ -23,10 +23,12 @@ const App = () => {
 
   const deleteAllEvents = (e) => {
     e.preventDefault();
-
-    dispatch({
-      type: 'DELETE_ALL_EVENT',
-    });
+    const result = window.confirm('Are you sure you want to delete?');
+    if (result) {
+      dispatch({
+        type: 'DELETE_ALL_EVENT',
+      });
+    }
   };
 
   return (
